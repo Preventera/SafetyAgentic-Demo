@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetyGraph ALL IN 2025 - Architecture Penta-Level</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 50%, #2a2a5e 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 95%;
+            height: 90%;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.6s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff6b35, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .penta-level {
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            gap: 1rem;
+            width: 100%;
+            height: 70%;
+            margin: 2rem 0;
+        }
+
+        .level {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .level:hover {
+            transform: translateX(10px);
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        .level-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9333ea;
+            margin-right: 2rem;
+            min-width: 60px;
+        }
+
+        .level-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .level-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-metrics {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .split-content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .content-left, .content-right {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .screenshot-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+        }
+
+        .screenshot-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .competitive-advantage {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(0, 212, 255, 0.2));
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .advantage-title {
+            font-size: 1.5rem;
+            color: #9333ea;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-metric {
+            font-size: 2rem;
+            color: #ff6b35;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .journey-step {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .journey-step::after {
+            content: "→";
+            color: #ff6b35;
+            font-size: 2rem;
+            margin: 0 1rem;
+        }
+
+        .journey-step:last-child::after {
+            display: none;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 212, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .slide-counter {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin: 0 1rem;
+        }
+
+        .timer {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            font-size: 1.3rem;
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: linear-gradient(90deg, #9333ea, #00d4ff, #ff6b35);
+            transition: width 0.5s ease;
+            z-index: 1000;
+        }
+
+        .company-logo {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+        }
+
+        li {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "▶";
+            color: #ff6b35;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .highlight {
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .highlight-purple {
+            color: #9333ea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="company-logo">SafetyGraph Industries</div>
+    <div class="timer" id="timer">00:00</div>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Titre avec Architecture Penta-Level -->
+        <div class="slide active" data-timing="90">
+            <h1>SafetyGraph</h1>
+            <h2>Architecture Penta-Level Révolutionnaire</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">420%</div>
+                    <div class="metric-label">ROI Démontré (+89.1%)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">84.2%</div>
+                    <div class="metric-label">Score Culture SST</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">4.2M$</div>
+                    <div class="metric-label">Économies Mesurées</div>
+                </div>
+            </div>
+            <p style="font-size: 1.4rem; margin-top: 2rem;">Orchestration Intelligente Penta-Level - ALL IN 2025 V2</p>
+        </div>
+
+        <!-- Slide 2: Architecture Penta-Level -->
+        <div class="slide" data-timing="120">
+            <h2>Architecture Penta-Level SafetyGraph</h2>
+            <div class="penta-level">
+                <div class="level">
+                    <div class="level-number">5</div>
+                    <div class="level-content">
+                        <div class="level-title">Intelligence Artificielle (Modules Spécialisés)</div>
+                        <div class="level-metrics">BehaviorX 92% • Pattern Recognition 87.3% • Multi-Sources Prédictives</div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-number">4</div>
+                    <div class="level-content">
+                        <div class="level-title">Terrain (Supervisor)</div>
+                        <div class="level-metrics">Performance 8/10 équipe • Score BBS 75.8% • Sécurité Psychologique 4.1/5</div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-number">3</div>
+                    <div class="level-content">
+                        <div class="level-title">Opérationnel (Safety Coordinator)</div>
+                        <div class="level-metrics">BBS Intégré 88.7% • Timeline 24h • Coaching 78% positif</div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-number">2</div>
+                    <div class="level-content">
+                        <div class="level-title">Executive (HSE Manager)</div>
+                        <div class="level-metrics">IA 97.3% précision • ROI 420% • Benchmarking Top 1%</div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-number">1</div>
+                    <div class="level-content">
+                        <div class="level-title">C-Suite Boardroom (Direction)</div>
+                        <div class="level-metrics">Vision Business • Impact +23% • Productivité +12%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Dashboard C-Suite Boardroom -->
+        <div class="slide" data-timing="90">
+            <div class="split-content">
+                <div class="content-left">
+                    <h2>Niveau 1: C-Suite Boardroom</h2>
+                    <h3>Vision Business & Impact Stratégique</h3>
+                    <ul>
+                        <li>ROI <span class="highlight">420% (+89.1%)</span></li>
+                        <li>Impact Marque <span class="highlight">+23%</span></li>
+                        <li>Benchmark Global <span class="highlight">Top 1%</span></li>
+                        <li>Score Culture SST <span class="highlight">84.2%</span></li>
+                        <li>Économies mesurées <span class="highlight">4.2M$</span></li>
+                        <li>Productivité <span class="highlight">+12%</span></li>
+                    </ul>
+                </div>
+                <div class="content-right">
+                    <div class="screenshot-container">
+                        <img src="captures/modules/C Suite/Slide 4.0.png" alt="Dashboard C-Suite Optimisé" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: HSE Manager Executive Level -->
+        <div class="slide" data-timing="105">
+            <div class="split-content">
+                <div class="content-left">
+                    <h2>Niveau 2: HSE Manager Executive</h2>
+                    <h3>Intelligence Prédictive & Stratégie</h3>
+                    <ul>
+                        <li>IA <span class="highlight">97.3% précision</span></li>
+                        <li>Prédictions <span class="highlight">6 mois</span> avance</li>
+                        <li>ROI <span class="highlight">420%</span> position mondiale Top 1%</li>
+                        <li>Synchronisation <span class="highlight">temps réel</span></li>
+                        <li>Performance globale <span class="highlight">multi-sites</span></li>
+                        <li>Exports enrichis <span class="highlight">BBS×ISO 45001</span></li>
+                    </ul>
+                </div>
+                <div class="content-right">
+                    <div class="screenshot-container">
+                        <img src="captures/modules/HSE MANAGER/Slide 1.1.png" alt="HSE Manager Executive Dashboard" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Safety Coordinator Opérationnel -->
+        <div class="slide" data-timing="90">
+            <div class="split-content">
+                <div class="content-left">
+                    <h2>Niveau 3: Safety Coordinator</h2>
+                    <h3>Coordination Terrain & BBS Intégré</h3>
+                    <ul>
+                        <li>Timeline <span class="highlight">24h</span> équipes actives 12/15</li>
+                        <li>BBS Intégré <span class="highlight">88.7%</span> comportements sûrs</li>
+                        <li>Coaching <span class="highlight">78% positif</span>/22% correctif</li>
+                        <li>Interface mobile <span class="highlight">observations terrain</span></li>
+                        <li>Feedback <span class="highlight">immédiat</span> adapté</li>
+                        <li>Conformité ISO 45001 <span class="highlight">opérationnelle</span></li>
+                    </ul>
+                </div>
+                <div class="content-right">
+                    <div class="screenshot-container">
+                        <img src="captures/modules/HSE Coordinator/Slide 2.0.png" alt="Safety Coordinator Dashboard" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Supervisor Terrain Level -->
+        <div class="slide" data-timing="75">
+            <div class="split-content">
+                <div class="content-left">
+                    <h2>Niveau 4: Supervisor Terrain</h2>
+                    <h3>Management Proximité & Leadership</h3>
+                    <ul>
+                        <li>Performance individuelle <span class="highlight">8/10 équipe</span></li>
+                        <li>Score BBS <span class="highlight">75.8%</span></li>
+                        <li>Coaching personnalisé <span class="highlight">par membre</span></li>
+                        <li>Actions terrain <span class="highlight">ciblées</span></li>
+                        <li>Sécurité Psychologique <span class="highlight">4.1/5</span></li>
+                        <li>Leadership terrain <span class="highlight">engagement mesurable</span></li>
+                    </ul>
+                </div>
+                <div class="content-right">
+                    <div class="screenshot-container">
+                        <img src="captures/modules/Supervisor/Slide 3.0.png" alt="Supervisor Terrain Dashboard" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Modules IA Spécialisés -->
+        <div class="slide" data-timing="105">
+            <div class="split-content">
+                <div class="content-left">
+                    <h2>Niveau 5: Intelligence Artificielle</h2>
+                    <h3>Modules Spécialisés Orchestrés</h3>
+                    <ul>
+                        <li><span class="highlight-purple">BehaviorX Orchestré</span><br>Workflow VCS→ABC→A1 • Score 92% • Performance <45s</li>
+                        <li><span class="highlight-purple">Pattern Recognition</span><br>15 patterns identifiés • 87.3% précision • Clustering automatique</li>
+                        <li><span class="highlight-purple">Multi-Sources Prédictives</span><br>2.3% incidents 6M • 18.7% risque comportemental • Culture "Improving"</li>
+                    </ul>
+                </div>
+                <div class="content-right">
+                    <div class="screenshot-container">
+                        <img src="captures/modules/Module Pattern Recognition/Slide 9.0.png" alt="Pattern Recognition SafetyGraph" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Avantage Concurrentiel Penta-Level -->
+        <div class="slide" data-timing="120">
+            <h2>Différenciation Concurrentielle</h2>
+            <h3>Excellence Penta-Level Démontrée</h3>
+            <div class="competitive-advantage">
+                <div class="advantage-card">
+                    <div class="advantage-title">Business Impact</div>
+                    <div class="advantage-metric">ROI 420% (+89.1%)</div>
+                    <div class="advantage-metric">Économies 4.2M$</div>
+                    <div class="advantage-metric">Impact Marque +23%</div>
+                    <div class="advantage-metric">Position Top 1% mondiale</div>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-title">Excellence Technique IA</div>
+                    <div class="advantage-metric">Orchestration BehaviorX 92%</div>
+                    <div class="advantage-metric">Pattern Recognition 87.3%</div>
+                    <div class="advantage-metric">Prédictions 97.3%</div>
+                    <div class="advantage-metric">Performance <45s</div>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-title">Métier Intégré</div>
+                    <div class="advantage-metric">BBS-ISO 45001</div>
+                    <div class="advantage-metric">Coaching scientifique 87%</div>
+                    <div class="advantage-metric">Sécurité psychologique 4.1/5</div>
+                    <div class="advantage-metric">Prévention proactive</div>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-title">Multi-Sources</div>
+                    <div class="advantage-metric">OSHA/BLS/NIOSH intégré</div>
+                    <div class="advantage-metric">CA Québec CNESST</div>
+                    <div class="advantage-metric">Standards 32% supérieurs vs OSHA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Parcours Utilisateur Démontrés -->
+        <div class="slide" data-timing="90">
+            <h2>Parcours Utilisateur Orchestrés</h2>
+            <div class="journey-path">
+                <div class="journey-step">
+                    <h4 style="color: #9333ea;">C-Suite Journey</h4>
+                    <p>Vision Boardroom → Impact Business → ROI 420% → Benchmark Global Top 1% → Actions Stratégiques</p>
+                </div>
+                <div class="journey-step">
+                    <h4 style="color: #00d4ff;">Executive Journey</h4>
+                    <p>Vision Stratégique → ROI Analysis → Prédictions IA → Benchmarking → Actions Stratégiques</p>
+                </div>
+                <div class="journey-step">
+                    <h4 style="color: #ff6b35;">Operational Journey</h4>
+                    <p>Coordination Terrain → Coaching BBS → Conformité ISO → Observations Mobile → Actions Immédiates</p>
+                </div>
+            </div>
+            <div class="journey-path">
+                <div class="journey-step">
+                    <h4 style="color: #10b981;">Supervisor Journey</h4>
+                    <p>Management Proximité → Coaching Personnalisé → Performance Équipe → Sécurité Psychologique → Leadership Terrain</p>
+                </div>
+                <div class="journey-step">
+                    <h4 style="color: #8b5cf6;">IA Journey</h4>
+                    <p>BehaviorX Orchestré → Pattern Recognition → Multi-Sources Prédictives → Cartographie Culture → Workflow Intelligent</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Synergies Inter-Niveaux -->
+        <div class="slide" data-timing="75">
+            <h2>Synergies Inter-Niveaux</h2>
+            <h3>Orchestration IA Centralisée</h3>
+            <div class="penta-level" style="height: 60%;">
+                <div class="level">
+                    <div class="level-content">
+                        <div class="level-title">Vision Boardroom → Stratégie Executive → Coordination Opérationnelle → Actions Terrain ← Intelligence IA</div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-content">
+                        <div class="level-title">Impact Business ← ROI Démontré ← Performance Mesurée ← Coaching Personnalisé ← Prédictions IA</div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-content">
+                        <div class="level-title">Orchestration IA Centralisée optimise simultanément les 5 niveaux avec personnalisation contextuelle avancée</div>
+                    </div>
+                </div>
+            </div>
+            <p style="font-size: 1.4rem; color: #ff6b35; margin-top: 2rem;">
+                Cette architecture 5-level crée une synergie exceptionnelle en cascade organisationnelle complète
+            </p>
+        </div>
+
+        <!-- Slide 11: Démonstration Live Penta-Level -->
+        <div class="slide" data-timing="90">
+            <div class="split-content">
+                <div class="content-left">
+                    <h2>Démonstration Live</h2>
+                    <h3>Architecture Penta-Level Production</h3>
+                    <div style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 15px; margin: 2rem 0; font-size: 1.3rem; color: #00d4ff;">
+                        safetygraph-production.onrender.com
+                    </div>
+                    <ul>
+                        <li>58 captures d'écran <span class="highlight">analysées</span></li>
+                        <li>Architecture <span class="highlight">penta-level</span> opérationnelle</li>
+                        <li>ROI <span class="highlight">420%</span> mesurable temps réel</li>
+                        <li>Orchestration IA <span class="highlight">centralisée</span></li>
+                        <li>Révolution <span class="highlight-purple">pilotage HSE</span></li>
+                    </ul>
+                </div>
+                <div class="content-right">
+                    <div class="screenshot-container">
+                        <img src="captures/modules/Module Behavior X/Slide 6.0.png" alt="Production Ready Penta-Level" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Conclusion Architecture Révolutionnaire -->
+        <div class="slide" data-timing="120">
+            <h1 style="font-size: 3rem;">SafetyGraph ne se contente pas de collecter des données</h1>
+            <h2 style="color: #9333ea; margin-top: 2rem;">Elle orchestre l'excellence HSE en cascade</h2>
+            <h2 style="color: #ff6b35;">depuis la vision boardroom jusqu'aux prédictions IA</h2>
+            <h2 style="color: #00d4ff; margin-bottom: 3rem;">créant un écosystème d'amélioration continue</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">Révolution</div>
+                    <div class="metric-label">Pilotage HSE Penta-Level</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Impact</div>
+                    <div class="metric-label">Business Démontrable</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Excellence</div>
+                    <div class="metric-label">Cascade Organisationnelle</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.6rem; margin-top: 2rem; color: rgba(255, 255, 255, 0.9);">
+                Cette analyse de 58 captures d'écran démontre que SafetyGraph représente une 
+                <span style="color: #ff6b35; font-weight: bold;">révolution dans le pilotage HSE penta-level</span>, 
+                transformant la fonction HSE en avantage concurrentiel mesurable du boardroom à l'intelligence artificielle.
+            </p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" id="prevBtn">◀ Précédent</button>
+        <span class="slide-counter" id="slideCounter">1 / 12</span>
+        <button class="nav-btn" onclick="nextSlide()" id="nextBtn">Suivant ▶</button>
+        <button class="nav-btn" onclick="toggleAutoPlay()" id="autoPlayBtn">▶ Auto</button>
+        <button class="nav-btn" onclick="toggleFullscreen()" id="fullscreenBtn">⛶ Plein Écran</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let totalSlides = document.querySelectorAll('.slide').length;
+        let isAutoPlay = false;
+        let slideTimer = null;
+        let startTime = Date.now();
+        let presentationTimer = null;
+
+        const slideTiming = [90, 120, 90, 105, 90, 75, 105, 120, 90, 75, 90, 120];
+
+        function updateSlide() {
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            updateProgress();
+            
+            if (isAutoPlay) {
+                setAutoSlideTimer();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function setAutoSlideTimer() {
+            clearTimeout(slideTimer);
+            const timing = slideTiming[currentSlide] * 1000;
+            slideTimer = setTimeout(() => {
+                if (currentSlide < totalSlides - 1) {
+                    nextSlide();
+                } else {
+                    toggleAutoPlay();
+                }
+            }, timing);
+        }
+
+        function toggleAutoPlay() {
+            isAutoPlay = !isAutoPlay;
+            const btn = document.getElementById('autoPlayBtn');
+            
+            if (isAutoPlay) {
+                btn.textContent = '⏸ Auto';
+                setAutoSlideTimer();
+            } else {
+                btn.textContent = '▶ Auto';
+                clearTimeout(slideTimer);
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateTimer() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+            const seconds = (elapsed % 60).toString().padStart(2, '0');
+            document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.getElementById('fullscreenBtn').textContent = '↙ Sortir';
+            } else {
+                document.exitFullscreen();
+                document.getElementById('fullscreenBtn').textContent = '⛶ Plein Écran';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'f':
+                case 'F11':
+                    e.preventDefault();
+                    toggleFullscreen();
+                    break;
+                case 'p':
+                    e.preventDefault();
+                    toggleAutoPlay();
+                    break;
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.navigation') || e.target.closest('button')) {
+                return;
+            }
+            
+            const rect = document.documentElement.getBoundingClientRect();
+            const clickX = e.clientX;
+            
+            if (clickX > rect.width / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        updateSlide();
+        presentationTimer = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
