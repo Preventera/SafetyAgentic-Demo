@@ -1,0 +1,25 @@
+{
+  "name": "@preventera/safetyagentic-dev-monorepo",
+  "version": "1.0.0",
+  "description": "Monorepo de développement unifié GenAISafety/Preventera",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "dev:all": "pnpm -r run dev",
+    "build:staging": "pnpm -r run build:staging",
+    "test:all": "pnpm -r run test",
+    "lint:all": "pnpm -r run lint"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "concurrently": "^8.0.0",
+    "eslint": "^8.0.0",
+    "netlify-cli": "^17.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.2"
+  },
+  "packageManager": "pnpm@8.6.0"
+}
