@@ -235,6 +235,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1(@types/node@22.5.5)
 
+  apps/risk-pilot-ai: {}
+
   apps/safetyai-pro:
     dependencies:
       react:

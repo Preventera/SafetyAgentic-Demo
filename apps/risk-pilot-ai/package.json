@@ -1,0 +1,10 @@
+{
+  "name": "@preventera/risk-pilot-ai",
+  "version": "1.0.0",
+  "description": "RiskPilotAI - Extraction et classification des risques SST",
+  "scripts": {
+    "dev": "streamlit run streamlit_app.py",
+    "install": "pip install -r requirements.txt",
+    "build": "echo 'Python app - no build needed'"
+  }
+}
