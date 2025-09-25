@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "Monorepo de développement unifié GenAISafety/Preventera",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "shared/*"
-  ],
   "scripts": {
     "dev:all": "pnpm -r run dev",
-    "build:staging": "pnpm -r run build:staging",
+    "dev:safetyai-pro": "pnpm --filter safetyai-pro dev",
+    "dev:squadrai-climalert": "pnpm --filter squadrai-climalert dev",
+    "dev:agentic-quebec": "pnpm --filter agentic-sst-quebec dev",
+    "dev:safetygraph": "echo 'SafetyGraph: Static files - open presentations/index.html'",
+    "build:all": "pnpm -r run build",
+    "build:safetyai-pro": "pnpm --filter safetyai-pro build",
+    "build:squadrai-climalert": "pnpm --filter squadrai-climalert build",
+    "build:agentic-quebec": "pnpm --filter agentic-sst-quebec build",
+    "build:staging": "pnpm -r run build",
     "test:all": "pnpm -r run test",
-    "lint:all": "pnpm -r run lint"
+    "lint:all": "pnpm -r run lint",
+    "clean": "pnpm -r exec rm -rf dist build node_modules/.cache"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
