@@ -1,0 +1,9 @@
+{
+  "name": "@preventera/safetygraph",
+  "version": "1.0.0",
+  "description": "SafetyGraph demo and presentations",
+  "scripts": {
+    "dev": "echo 'SafetyGraph dev mode'",
+    "build": "echo 'SafetyGraph build'"
+  }
+}

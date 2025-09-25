@@ -1,0 +1,9 @@
+{
+  "name": "@preventera/agentic-sst-quebec", 
+  "version": "1.0.0",
+  "description": "AgenticSST Quebec demo",
+  "scripts": {
+    "dev": "echo 'AgenticSST Quebec dev mode'",
+    "build": "echo 'AgenticSST Quebec build'"
+  }
+}
