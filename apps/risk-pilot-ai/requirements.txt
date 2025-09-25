@@ -1,0 +1,5 @@
+pandas
+PyMuPDF
+beautifulsoup4
+requests
+streamlit
