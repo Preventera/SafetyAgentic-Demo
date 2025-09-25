@@ -1,0 +1,352 @@
+import React, { useState, useEffect } from 'react';
+import { AlertTriangle, Brain, Shield, MapPin, Settings, FileText, Users, Zap, CheckCircle, Clock, Navigation, Camera } from 'lucide-react';
+
+const PrudenceAI = () => {
+  const [activeModule, setActiveModule] = useState('dashboard');
+  const [alerts, setAlerts] = useState([]);
+  const [currentRisk, setCurrentRisk] = useState('MOYEN');
+
+  const modules = [
+    { id: 'dashboard', name: 'Tableau de Bord', icon: Brain },
+    { id: 'risks', name: 'Analyse Risques', icon: AlertTriangle },
+    { id: 'signage', name: 'Signalisation Auto', icon: Shield },
+    { id: 'alerts', name: '100 Alertes', icon: Zap },
+    { id: 'compliance', name: 'Conformité MTQ', icon: FileText },
+    { id: 'coordination', name: 'Coordination', icon: Users }
+  ];
+
+  const riskFactors = [
+    { name: 'Visibilité', status: 'CRITIQUE', value: 85 },
+    { name: 'Météo', status: 'BON', value: 25 },
+    { name: 'Proximité Travailleurs', status: 'MOYEN', value: 60 },
+    { name: 'Trafic', status: 'ÉLEVÉ', value: 78 },
+    { name: 'Largeur Voie', status: 'CONFORME', value: 15 },
+    { name: 'Signaleurs', status: 'ACTIF', value: 10 }
+  ];
+
+  const alertsData = [
+    { id: 1, type: 'Alerte anticipée', message: 'Zone de travaux dans 2 km, préparez-vous à ralentir', priority: 'HIGH' },
+    { id: 2, type: 'Alerte vitesse', message: 'Réduction de vitesse obligatoire : 50 km/h', priority: 'CRITICAL' },
+    { id: 3, type: 'Instruction trajectoire', message: 'Déport sur voie de gauche dans 300m', priority: 'MEDIUM' },
+    { id: 17, type: 'Alerte proximité', message: 'Véhicule de chantier en mouvement, gardez vos distances', priority: 'HIGH' },
+    { id: 42, type: 'Instruction nuit', message: 'Éclairage réduit, adaptez votre vitesse', priority: 'MEDIUM' }
+  ];
+
+  const signagePanels = [
+    { code: 'P125', name: 'Obligation descendre vélo', context: 'Voie cyclable entravée', status: 'INSTALLÉ' },
+    { code: 'T803', name: 'Trottoir barré', context: 'Corridor piétonnier', status: 'REQUIS' },
+    { code: 'T9016-T9018', name: 'Détour piétons', context: 'Intersection temporaire', status: 'EN COURS' }
+  ];
+
+  useEffect(() => {
+    setAlerts(alertsData);
+    const interval = setInterval(() => {
+      const risks = ['FAIBLE', 'MOYEN', 'ÉLEVÉ'];
+      setCurrentRisk(risks[Math.floor(Math.random() * risks.length)]);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getRiskColor = (status) => {
+    switch(status) {
+      case 'CRITIQUE': return 'bg-red-500';
+      case 'ÉLEVÉ': return 'bg-orange-500';
+      case 'MOYEN': return 'bg-yellow-500';
+      default: return 'bg-green-500';
+    }
+  };
+
+  const getPriorityColor = (priority) => {
+    switch(priority) {
+      case 'CRITICAL': return 'border-l-red-500';
+      case 'HIGH': return 'border-l-orange-500';
+      case 'MEDIUM': return 'border-l-yellow-500';
+      default: return 'border-l-blue-500';
+    }
+  };
+
+  const DashboardView = () => (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-6 rounded-xl text-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Chantier A-40 Est - Secteur Anjou</h2>
+            <p className="opacity-90">Analyse en temps réel • Tome V MTQ • Normes C-25</p>
+          </div>
+          <div className={`px-6 py-3 rounded-full text-lg font-bold ${currentRisk === 'ÉLEVÉ' ? 'bg-red-600' : currentRisk === 'MOYEN' ? 'bg-yellow-600' : 'bg-green-600'}`}>
+            RISQUE {currentRisk}
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-l-green-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600">Alertes Actives</p>
+              <p className="text-3xl font-bold text-green-600">24</p>
+            </div>
+            <AlertTriangle className="h-12 w-12 text-green-500" />
+          </div>
+        </div>
+        
+        <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-l-blue-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600">Conformité MTQ</p>
+              <p className="text-3xl font-bold text-blue-600">98%</p>
+            </div>
+            <CheckCircle className="h-12 w-12 text-blue-500" />
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-l-purple-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600">Panneaux Gérés</p>
+              <p className="text-3xl font-bold text-purple-600">15</p>
+            </div>
+            <Shield className="h-12 w-12 text-purple-500" />
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-l-orange-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600">Temps Réel</p>
+              <p className="text-3xl font-bold text-orange-600">ACTIF</p>
+            </div>
+            <Clock className="h-12 w-12 text-orange-500" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-lg">
+        <h3 className="text-xl font-bold mb-4 flex items-center">
+          <Brain className="mr-2" /> Analyse Contextuelle Proactive
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {riskFactors.map((factor, index) => (
+            <div key={index} className="p-4 bg-gray-50 rounded-lg">
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-medium">{factor.name}</span>
+                <span className={`px-2 py-1 text-xs rounded-full text-white ${getRiskColor(factor.status)}`}>
+                  {factor.status}
+                </span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className={`h-2 rounded-full ${getRiskColor(factor.status)}`}
+                  style={{ width: `${factor.value}%` }}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const AlertsView = () => (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold text-gray-800">Système d'Alertes Intelligentes</h2>
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+        <p className="text-blue-800">
+          <strong>100 alertes et instructions</strong> basées sur les meilleures pratiques du Tome V MTQ et guides APSAM
+        </p>
+      </div>
+      
+      <div className="space-y-4">
+        {alerts.map((alert) => (
+          <div key={alert.id} className={`bg-white p-6 rounded-lg shadow-lg border-l-4 ${getPriorityColor(alert.priority)}`}>
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center mb-2">
+                  <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium mr-3">
+                    #{alert.id}
+                  </span>
+                  <span className="font-semibold text-gray-900">{alert.type}</span>
+                </div>
+                <p className="text-gray-700 mb-3">{alert.message}</p>
+                <div className="flex items-center text-sm text-gray-500">
+                  <MapPin className="h-4 w-4 mr-1" />
+                  <span>Contexte: Zone de travaux active</span>
+                  <span className="mx-2">•</span>
+                  <span>Bénéfice: Prévention collision</span>
+                </div>
+              </div>
+              <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                alert.priority === 'CRITICAL' ? 'bg-red-100 text-red-800' :
+                alert.priority === 'HIGH' ? 'bg-orange-100 text-orange-800' :
+                'bg-yellow-100 text-yellow-800'
+              }`}>
+                {alert.priority}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const SignageView = () => (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold text-gray-800">Gestion Automatique de la Signalisation</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {signagePanels.map((panel, index) => (
+          <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-bold text-lg">{panel.code}</h3>
+              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                panel.status === 'INSTALLÉ' ? 'bg-green-100 text-green-800' :
+                panel.status === 'REQUIS' ? 'bg-red-100 text-red-800' :
+                'bg-yellow-100 text-yellow-800'
+              }`}>
+                {panel.status}
+              </span>
+            </div>
+            <p className="font-medium text-gray-900 mb-2">{panel.name}</p>
+            <p className="text-sm text-gray-600 mb-4">{panel.context}</p>
+            <div className="text-xs text-gray-500">
+              <p>• Dimensions: 450mm x 450mm (min.)</p>
+              <p>• Conforme Tome V MTQ</p>
+              <p>• Installation réglementaire</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-lg">
+        <h3 className="text-xl font-bold mb-4">Positionnement Intelligent</h3>
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="flex items-center mb-2">
+            <Navigation className="h-5 w-5 text-blue-500 mr-2" />
+            <span className="font-medium">Calculs Automatiques</span>
+          </div>
+          <ul className="text-sm text-gray-600 space-y-1 ml-7">
+            <li>• Largeur minimale corridor cycliste: 1,5m</li>
+            <li>• Largeur minimale corridor piéton: 1m</li>
+            <li>• Interdiction détour terrain privé</li>
+            <li>• Validation ingénieur si requis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+
+  const ComplianceView = () => (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold text-gray-800">Conformité Réglementaire MTQ</h2>
+      
+      <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded">
+        <div className="flex items-center mb-3">
+          <CheckCircle className="h-6 w-6 text-green-500 mr-2" />
+          <h3 className="text-lg font-bold text-green-800">Tome V - Signalisation Routière Travaux</h3>
+        </div>
+        <p className="text-green-700">
+          Application automatique des normes officielles du ministère des Transports du Québec
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h3 className="font-bold text-lg mb-4">Guides Intégrés</h3>
+          <div className="space-y-3">
+            <div className="flex items-center p-3 bg-blue-50 rounded">
+              <FileText className="h-5 w-5 text-blue-500 mr-3" />
+              <span>Signalisation Voie Cyclable Entravée</span>
+            </div>
+            <div className="flex items-center p-3 bg-blue-50 rounded">
+              <FileText className="h-5 w-5 text-blue-500 mr-3" />
+              <span>Signalisation Trottoir Entravé</span>
+            </div>
+            <div className="flex items-center p-3 bg-blue-50 rounded">
+              <FileText className="h-5 w-5 text-blue-500 mr-3" />
+              <span>Éléments à Considérer Installateur</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h3 className="font-bold text-lg mb-4">Validation Automatique</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+              <span>Dimensions Panneaux</span>
+              <CheckCircle className="h-5 w-5 text-green-500" />
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+              <span>Emplacements Réglementaires</span>
+              <CheckCircle className="h-5 w-5 text-green-500" />
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+              <span>Approbations Requises</span>
+              <CheckCircle className="h-5 w-5 text-green-500" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderContent = () => {
+    switch(activeModule) {
+      case 'dashboard': return <DashboardView />;
+      case 'alerts': return <AlertsView />;
+      case 'signage': return <SignageView />;
+      case 'compliance': return <ComplianceView />;
+      default: return <DashboardView />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 text-white p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Brain className="h-10 w-10 mr-3" />
+              <div>
+                <h1 className="text-3xl font-bold">PrudenceAI</h1>
+                <p className="opacity-90">Intelligence Artificielle pour la Sécurité Routière des Chantiers</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="text-right">
+                <p className="text-sm opacity-75">Preventera × GenAISafety</p>
+                <p className="font-medium">Agent IA Agentique</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="lg:w-64 space-y-2">
+            {modules.map((module) => (
+              <button
+                key={module.id}
+                onClick={() => setActiveModule(module.id)}
+                className={`w-full flex items-center p-4 rounded-lg text-left transition-all duration-200 ${
+                  activeModule === module.id
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm'
+                }`}
+              >
+                <module.icon className="h-5 w-5 mr-3" />
+                {module.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex-1">
+            {renderContent()}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PrudenceAI;

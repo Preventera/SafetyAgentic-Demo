@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSE Human X - Facteur Humain en Sécurité</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 3rem;
+            max-width: 900px;
+        }
+        
+        .logo {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #e74c3c, #f39c12, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .human-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .factor {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(52, 73, 94, 0.1));
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .factor:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(231, 76, 60, 0.2);
+        }
+        
+        .factor::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #2ecc71);
+        }
+        
+        .factor-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        
+        .factor h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: #ecf0f1;
+        }
+        
+        .factor p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .status {
+            margin-top: 4rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.2), rgba(52, 152, 219, 0.2));
+            border-radius: 30px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            display: inline-block;
+            font-weight: 500;
+        }
+        
+        .tech-stack {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">HSE Human X</h1>
+        <p class="subtitle">Human Factors in Health, Safety & Environment</p>
+        <p class="tagline">Comprendre et optimiser le facteur humain dans la sécurité industrielle par l'IA comportementale</p>
+        
+        <div class="human-factors">
+            <div class="factor">
+                <div class="factor-icon">🧭</div>
+                <h3>Comportement Sécuritaire</h3>
+                <p>Analyse des patterns comportementaux et identification des facteurs de risque liés aux actions humaines en milieu industriel</p>
+            </div>
+            
+            <div class="factor">
+                <div class="factor-icon">💡</div>
+                <h3>Formation Adaptative</h3>
+                <p>Programmes de formation personnalisés basés sur les profils cognitifs et les habitudes de travail individuelles</p>
+            </div>
+            
+            <div class="factor">
+                <div class="factor-icon">📈</div>
+                <h3>Performance Humaine</h3>
+                <p>Optimisation des interfaces homme-machine et des processus pour réduire l'erreur humaine</p>
+            </div>
+            
+            <div class="factor">
+                <div class="factor-icon">🔍</div>
+                <h3>Analyse Ergonomique</h3>
+                <p>Évaluation des postes de travail et recommandations pour minimiser la fatigue et les troubles musculo-squelettiques</p>
+            </div>
+            
+            <div class="factor">
+                <div class="factor-icon">🎯</div>
+                <h3>Culture Sécuritaire</h3>
+                <p>Mesure et amélioration de la culture de sécurité organisationnelle par l'analyse comportementale</p>
+            </div>
+            
+            <div class="factor">
+                <div class="factor-icon">⚡</div>
+                <h3>Réaction d'Urgence</h3>
+                <p>Simulation des réactions humaines en situation de crise pour optimiser les procédures d'évacuation</p>
+            </div>
+        </div>
+        
+        <div class="status">
+            🔬 Recherche & Développement - GenAISafety × Preventera
+        </div>
+        
+        <div class="tech-stack">
+            Powered by AI Behavioral Analytics • Neural Networks • C-25 Standards Compliance
+        </div>
+    </div>
+</body>
+</html>
