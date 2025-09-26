@@ -1,0 +1,14 @@
+[build]
+  base = "apps/prudence-ai"
+  command = "pnpm install && pnpm --filter prudence-ai build"
+  publish = "dist"
+
+[build.environment]
+  NODE_ENV = "production"
+  VITE_APP_NAME = "PrudenceAI"
+  VITE_APP_DESCRIPTION = "Intelligence Artificielle pour la Sécurité Routière des Chantiers"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
