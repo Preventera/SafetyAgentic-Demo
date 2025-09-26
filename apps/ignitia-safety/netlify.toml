@@ -1,33 +1,8 @@
-# netlify.toml - Configuration SPA Corrigée IGNITIA
-# Nom de code: IGNITIA-Netlify-SPA-Router-Fix
-# Localisation: racine du projet (netlify.toml)
-
 [build]
-  publish = "dist"
-  command = "npm run build"
-  
-[build.environment]
-  NODE_VERSION = "18"
+  command = "cd apps/ignitia-safety && npm install && npm run build"
+  publish = "apps/ignitia-safety/dist"
 
-# Configuration SPA pour React Router
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-# Gestion des assets statiques (priorité plus haute)
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-
-# Gestion du favicon et robots.txt
-[[redirects]]
-  from = "/favicon.ico"
-  to = "/favicon.ico"
-  status = 200
-
-[[redirects]]
-  from = "/robots.txt"
-  to = "/robots.txt"
   status = 200
