@@ -64,14 +64,14 @@ const App = () => {
                 ======================================== */}
             
             {/* 🚀 DEMO Landing Page - Vue d'ensemble écosystème */}
-            <Route path="/demo" element={<DemoLandingPage />} />
+            <Route path="/" element={<DemoLandingPage />} />
 
             {/* ========================================
                 ROUTES IGNITIA EXISTANTES - STABLES
                 ======================================== */}
             
             {/* 🏠 Page d'accueil IGNITIA - Dashboard principal */}
-            <Route path="/" element={<Index />} />
+            <Route path="/app" element={<Index />} />
             
             {/* 🏢 Module Profile SCIAN - Analyse sectorielle enrichie */}
             <Route path="/profile-scian" element={<ProfileScian />} />

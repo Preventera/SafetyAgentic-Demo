@@ -1,39 +1,9 @@
 {
-  "name": "@preventera/safetyagentic-dev-monorepo",
-  "version": "1.0.0",
-  "description": "Monorepo de développement unifié GenAISafety/Preventera",
+  "name": "@preventera/safetyagentic-demo-monorepo",
   "private": true,
   "scripts": {
-    "dev:all": "pnpm -r run dev",
-    "dev:genaisafety-hub": "pnpm --filter genaisafety-hub dev",
-    "dev:safetyai-pro": "pnpm --filter safetyai-pro dev",
-    "dev:squadrai-climalert": "pnpm --filter squadrai-climalert dev",
-    "dev:agentic-quebec": "pnpm --filter agentic-sst-quebec dev",
-    "dev:safetygraph": "echo 'SafetyGraph: Static files - open presentations/index.html'",
-    "dev:prudence-ai": "pnpm --filter prudence-ai dev",
-    "dev:hse-human-x": "pnpm --filter hse-human-x dev",
-    "dev:risk-pilot-ai": "echo 'RiskPilotAI: Python/Streamlit app - run: cd apps/risk-pilot-ai && streamlit run streamlit_app.py'",
-    "build:all": "pnpm -r run build",
-    "build:genaisafety-hub": "pnpm --filter genaisafety-hub build",
-    "build:safetyai-pro": "pnpm --filter safetyai-pro build",
-    "build:squadrai-climalert": "pnpm --filter squadrai-climalert build",
-    "build:agentic-quebec": "pnpm --filter agentic-sst-quebec build",
-    "build:prudence-ai": "pnpm --filter prudence-ai build",
-    "build:hse-human-x": "pnpm --filter hse-human-x build",
-    "build:risk-pilot-ai": "echo 'RiskPilotAI: Python app - no build needed'",
-    "build:staging": "pnpm -r run build",
-    "build:production": "pnpm build:genaisafety-hub && pnpm build:safetyai-pro && pnpm build:squadrai-climalert && pnpm build:prudence-ai && pnpm build:hse-human-x",
-    "test:all": "pnpm -r run test",
-    "lint:all": "pnpm -r run lint",
-    "clean": "pnpm -r exec rm -rf dist build node_modules/.cache"
-  },
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "concurrently": "^8.0.0",
-    "eslint": "^8.0.0",
-    "netlify-cli": "^17.0.0",
-    "prettier": "^3.0.0",
-    "typescript": "^5.0.2"
-  },
-  "packageManager": "pnpm@8.6.0"
+    "dev:ignitia": "cd apps/ignitia-safety && npm run dev",
+    "build:ignitia": "cd apps/ignitia-safety && npm run build",
+    "install:ignitia": "cd apps/ignitia-safety && npm install"
+  }
 }
